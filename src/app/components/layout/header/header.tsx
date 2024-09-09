@@ -1,7 +1,5 @@
-"use Client"
-
+"use client"
 import Link from "next/link";
-
 export default function Header () {
     console.log("Header");
     return (
