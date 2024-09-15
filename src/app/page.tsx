@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Description from "@/app/components/home/description/description";
-import Hero from "@/app/components/home/hero/hero";
-import MainProducts from "@/app/components/home/mainProducts/mainProducts";
+import Description from "@/app/components/home/description/Description";
+import Hero from "@/app/components/home/hero/Hero";
+import MainProducts from "@/app/components/home/mainProducts/MainProducts";
 
 export default function Home() {
   return (
