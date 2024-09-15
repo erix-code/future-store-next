@@ -15,6 +15,9 @@ const config: Config|any = {
         secondary: "#e4e1f6",
         borderColor: "#302c3f",
       },
+      boxShadow: {
+        "light-shadow": "0 0 4rem hsla(0, 0%, 100%, .2)"
+      }
     },
   },
   plugins: [],

@@ -8,8 +8,8 @@ export default function Home() {
     <div className="">
       <h1>HOla mundo</h1>
         <Hero></Hero>
-        <MainProducts></MainProducts>
         <Description></Description>
+      <MainProducts></MainProducts>
     </div>
   );
 }
