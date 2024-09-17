@@ -17,8 +17,8 @@ export default function Description() {
     }
     console.log(hasBorder);
     return (
-        <section className={"flex justify-center"}>
-            <div className={"grid md:grid-cols-2 pt-32 w-9/12 lg:w-8/12   md:gap-x-24 grid-cols-1"}>
+        <section className={"flex justify-center pt-32"}>
+            <div className={"grid md:grid-cols-2  w-9/12 lg:w-8/12   md:gap-x-24 grid-cols-1 max-h-96"}>
                 <Image priority={false} quality={100}
                        onClick={handleClick}
                        placeholder={"blur"} blurDataURL={blurImage}
