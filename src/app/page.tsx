@@ -2,6 +2,8 @@ import Image from "next/image";
 import Description from "@/app/components/home/Description/Description";
 import Hero from "@/app/components/home/Hero/Hero";
 import MainProducts from "@/app/components/home/MainProducts/MainProducts";
+import {Suspense} from "react";
+import Loader from "@/app/components/Loader/Loader";
 
 export default function Home() {
   return (
@@ -9,7 +11,9 @@ export default function Home() {
       <h1>HOla mundo</h1>
         <Hero></Hero>
         <Description></Description>
-      <MainProducts></MainProducts>
+        <Suspense fallback={<Loader />}>
+            <MainProducts></MainProducts>
+        </Suspense>
     </div>
   );
 }
