@@ -6,14 +6,13 @@ import {Suspense} from "react";
 import Loader from "@/app/components/Loader/Loader";
 
 export default function Home() {
-  return (
-    <div className="">
-      <h1>HOla mundo</h1>
-        <Hero></Hero>
-        <Description></Description>
-        <Suspense fallback={<Loader />}>
-            <MainProducts></MainProducts>
-        </Suspense>
-    </div>
-  );
+    return (
+        <div className="">
+            <Hero></Hero>
+            <Description></Description>
+            <Suspense fallback={<Loader/>}>
+                <MainProducts></MainProducts>
+            </Suspense>
+        </div>
+    );
 }
