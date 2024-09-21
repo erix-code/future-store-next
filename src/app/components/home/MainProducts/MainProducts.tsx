@@ -1,19 +1,6 @@
 import Image from "next/image";
-const getProducts = async () => {
-    try {
-        const response = await fetch(`${process.env.SHOPIFY_HOSTNAME}/admin/api/2024-07/products.json?limit=8`, {
-            headers: {
-                "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN || ""
-            }
-        });
-        const { products } = await response.json();
-        return products;
-    } catch (error) {
-        console.log(error);
-    }
-}
+import { getProducts } from "@/app/services/shopify";
 export default async function MainProducts() {
-
     const products : [] = await getProducts();
 
     return (
