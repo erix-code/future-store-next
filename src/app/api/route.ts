@@ -1,4 +1,8 @@
+import { getProducts } from "@/app/services/shopify";
+
 export async function GET() {
-    const message= "Hello wolrd";
-    return Response.json({message});
+    const response = await fetch(`${window.location.origin}/api`);
+    const { products } = response.json();
+
+    return Response.json(products);
 }
