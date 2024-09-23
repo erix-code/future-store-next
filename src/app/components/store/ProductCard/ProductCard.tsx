@@ -6,7 +6,13 @@ interface ProductCardInterface {
 }
 
 export const ProductCard = ({product}: ProductCardInterface) => {
-    console.log();
+    const getProductPrice = () => {
+        if (product.variants) {
+            return product.variants[0].price;
+        } else {
+            return product.price;
+        }
+    }
     return (
         <Link href={`/articulo/${product.handle}?id=${product.id}`} className={"relative col-span-1 max-w-96"}>
             <article>
@@ -17,7 +23,7 @@ export const ProductCard = ({product}: ProductCardInterface) => {
                 <div className={"text-xl max-w-80 font-semibold"}>
                     <h3>{product.title}</h3>
                 </div>
-                <span className={"absolute top-0 right-0 bg-red-500 rounded text-lg px-2 rotate-6"}>${product.variants[0].price} USD</span>
+                <span className={"absolute top-0 right-0 bg-red-500 rounded text-lg px-2 rotate-6"}>${getProductPrice()} USD</span>
             </article>
         </Link>
     );

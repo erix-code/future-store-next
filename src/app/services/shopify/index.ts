@@ -23,6 +23,19 @@ export const getCollections = async () => {
         const { smart_collections }  = await response.json();
         return smart_collections;
     } catch (error){
-        console.log(error)
+        console.log(error);
+    }
+}
+export const getProductsByCollectionId = async (collectionId: string) => {
+    try {
+        const response = await fetch(shopifyUrls.collections.findProducts(collectionId), {
+            headers: {
+                "X-Shopify-Access-Token": env.SHOPIFY_ACCESS_TOKEN || ""
+            }
+        });
+        const { products } = await response.json();
+        return products;
+    } catch (error) {
+        console.log(error);
     }
 }
