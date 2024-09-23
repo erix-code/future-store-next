@@ -13,3 +13,16 @@ export const getProducts = async () => {
         console.log(error);
     }
 }
+export const getCollections = async () => {
+    try {
+        const response = await fetch(shopifyUrls.collections.all, {
+            headers: {
+                "X-Shopify-Access-Token": env.SHOPIFY_ACCESS_TOKEN || ""
+            }
+        });
+        const { smart_collections }  = await response.json();
+        return smart_collections;
+    } catch (error){
+        console.log(error)
+    }
+}

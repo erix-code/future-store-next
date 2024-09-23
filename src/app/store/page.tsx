@@ -4,7 +4,6 @@ export default async function Store() {
     const products = await getProducts();
     return(
         <>
-            <h1>Explorar</h1>
             <ProductsWrapper products={products}></ProductsWrapper>
         </>
 

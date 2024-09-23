@@ -1,29 +1,19 @@
 import Link from "next/link";
-export default function Layout({children} : {children: React.ReactNode}){
+import {getCollections} from "@/app/services/shopify";
+
+export default async function Layout({children} : {children: React.ReactNode}){
+    const smartCollections = await getCollections();
+    console.log(smartCollections);
     return (
         <main>
-            <nav>Navegacion de categorias</nav>
-            <ul className={"flex flex-row space-x-10 px-10 xl:px-60"}>
-                <Link className={"flex bg-gradient-to-r from-pink-500 to-blue-600 w-40 shadow-md rounded-3xl h-10 justify-center items-center"} href={"/"}>
-                    <span className={"text-lg font-bold"}>Dark</span>
-                </Link>
-
-                <Link className={"flex bg-gradient-to-r from-pink-500 to-blue-600 w-40 shadow-md rounded-3xl h-10 justify-center items-center"} href={"/"}>
-                    <span className={"text-lg font-bold"}>Dark</span>
-                </Link>
-
-                <Link className={"flex bg-gradient-to-r from-pink-500 to-blue-600 w-40 shadow-md rounded-3xl h-10 justify-center items-center"} href={"/"}>
-                    <span className={"text-lg font-bold"}>Dark</span>
-                </Link>
-
-                <Link className={"flex bg-gradient-to-r from-pink-500 to-blue-600 w-40 shadow-md rounded-3xl h-10 justify-center items-center"} href={"/"}>
-                    <span className={"text-lg font-bold"}>Dark</span>
-                </Link>
-
-                <Link className={"flex bg-gradient-to-r from-pink-500 to-blue-600 w-40 shadow-md rounded-3xl h-10 justify-center items-center"} href={"/"}>
-                    <span className={"text-lg font-bold"}>Dark</span>
-                </Link>
-            </ul>
+            <nav className={"flex flex-row space-x-2 px-10 xl:px-10 pb-10 overflow-x-auto"}>
+                {smartCollections.map((collection, index) => (
+                    <Link key={index} className={"flex bg-gradient-to-r from-pink-500 to-blue-600 shadow-md rounded-3xl min-h-10 justify-center items-center px-4"}
+                          href={`/store/`+collection.handle}>
+                        <span className={"text-sm md:text-md md:font-semibold "}>{collection.title}</span>
+                    </Link>
+                ))}
+            </nav>
             {children}
         </main>
     )
