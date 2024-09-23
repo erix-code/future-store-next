@@ -1,4 +1,5 @@
 import {getProductById} from "@/app/services/shopify";
+import ProductView from "@/app/components/product/ProductView/ProductView";
 
 interface ProductPageParams {
     params: {
@@ -13,8 +14,6 @@ export default async function ProductPage(params: ProductPageParams) {
     const product = await getProductById(id);
     console.log(product);
     return (
-        <div>
-            <h3>{product.title}</h3>
-        </div>
+        <ProductView product={product}></ProductView>
     )
 }
