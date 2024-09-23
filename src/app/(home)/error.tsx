@@ -1,8 +1,7 @@
 "use client";
-import {ErrorProps} from "@/app/models/ErrorProps";
 import Image from "next/image";
 
-export default function Error({error, reset}: ErrorProps){
+export default function Error({error, reset}: ErrorPageProps){
     return (
         <div className={"w-full h-[80vh] flex flex-col justify-center items-center text-4xl "}>
             <div

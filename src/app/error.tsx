@@ -1,8 +1,7 @@
 "use client"
-import {ErrorProps} from "@/app/models/ErrorProps";
 import Image from "next/image";
 
-export default function GlobalError({error, reset}:ErrorProps){
+export default function GlobalError({error, reset}:ErrorPageProps){
     return (
         <div className={"w-full h-[80vh] flex flex-col justify-center items-center text-4xl "}>
             <div className={"pb-5 bg-gradient-to-r from-pink-600 to-indigo-600  text-transparent bg-clip-text uppercase font-bold"}>
