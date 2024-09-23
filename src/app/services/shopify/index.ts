@@ -22,9 +22,8 @@ export const getProductById = async (id) => {
                 "X-Shopify-Access-Token": env.SHOPIFY_ACCESS_TOKEN || ""
             }
         });
-        // const res = await response.json();
-        console.log(response);
-        // return response.product;
+        const {product} = await response.json();
+        return product;
     } catch (error) {
         console.log(error);
     }

@@ -4,7 +4,7 @@ export const shopifyUrls = {
     products: {
         'all': `${env.SHOPIFY_HOSTNAME}/admin/api/2024-07/products.json`,
         'find': function(id: string) {
-            return `${env.NEXT_PUBLIC_SHOPIFY_HOSTNAME}admin/api/2024-07/smart_collections.json`
+            return `${env.SHOPIFY_HOSTNAME}admin/api/2024-07/products/${id}.json`
         }
     },
     collections: {
