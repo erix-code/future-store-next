@@ -3,7 +3,6 @@ import {getCollections} from "@/app/services/shopify";
 
 export default async function Layout({children} : {children: React.ReactNode}){
     const smartCollections = await getCollections();
-    console.log(smartCollections);
     return (
         <main>
             <nav className={"flex flex-row space-x-2 px-10 xl:px-10 pb-10 overflow-x-auto"}>
