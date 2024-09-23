@@ -13,6 +13,22 @@ export const getProducts = async () => {
         console.log(error);
     }
 }
+
+export const getProductById = async (id) => {
+    try {
+        console.log(shopifyUrls.products.find(id));
+        const response = await fetch(shopifyUrls.products.find(id), {
+            headers: {
+                "X-Shopify-Access-Token": env.SHOPIFY_ACCESS_TOKEN || ""
+            }
+        });
+        // const res = await response.json();
+        console.log(response);
+        // return response.product;
+    } catch (error) {
+        console.log(error);
+    }
+}
 export const getCollections = async () => {
     try {
         const response = await fetch(shopifyUrls.collections.all, {
