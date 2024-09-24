@@ -10,9 +10,26 @@ interface ProductPageParams {
         id: string
     }
 }
+
+export async function generateMetadata(params: ProductPageParams){
+    const id = params.searchParams.id;
+    const product = await getProductById(id);
+
+
+    return {
+        title: product.title,
+        description: product.body_html,
+        keywords: product.tags,
+        openGraph: {
+            images: [product.image.src]
+        }
+    }
+}
 export default async function ProductPage(params: ProductPageParams) {
     const id = params.searchParams.id;
     const product = await getProductById(id);
+
+
     if (!id) {
         redirect("/store");
     }
