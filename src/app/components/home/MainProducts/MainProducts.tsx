@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { getProducts } from "@/app/services/shopify";
+import { getMainProducts } from "@/app/services/shopify";
 export default async function MainProducts() {
-    const products : [] = await getProducts();
+    const products : [] = await getMainProducts();
 
     return (
         <section>
@@ -10,7 +10,8 @@ export default async function MainProducts() {
                 {products?.map((product:any, index:number) => (
                     <div key={index} className={"col-span-1 w-full h-[420px] relative "}>
                         <h3 className={"text-2xl font-semibold absolute top-5 right-10 z-10"}>{product.title}</h3>
-                        <Image className={"opacity-50 object-cover w-full h-[420px]"} src={product.image.src} height={product.image.height} width={product.image.width} alt={product.image.alt}></Image>
+                        <Image className={"opacity-50 object-cover w-full h-[420px]"}
+                               src={product.image.src} height={product.image.height} width={product.image.width} alt={product.image.alt}></Image>
                     </div>
                 ))}
             </div>

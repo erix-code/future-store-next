@@ -28,6 +28,25 @@ export const getProductById = async (id) => {
         console.log(error);
     }
 }
+
+export const getMainProducts = async () => {
+    const mainProductId: string = "626094440632";
+    try {
+        const response = await fetch(shopifyUrls.collections.findProducts(mainProductId), {
+            headers: {
+                "X-Shopify-Access-Token": env.SHOPIFY_ACCESS_TOKEN || ""
+            },
+            cache: "force-cache",
+            next: {
+                tags: ["main-products"]
+            }
+        });
+        const { products } = await response.json();
+        return products;
+    } catch (error) {
+        console.log(error);
+    }
+}
 export const getCollections = async () => {
     try {
         const response = await fetch(shopifyUrls.collections.all, {
