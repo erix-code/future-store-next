@@ -2,6 +2,8 @@
 import Image from "next/image";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
+import {SanitizeHTML} from "@/app/components/SanitizeHTML/SanitizeHTML";
+
 export default function ProductView({product}) {
     const [counter, setCounter] = useState(0);
     const router = useRouter();
@@ -29,8 +31,12 @@ export default function ProductView({product}) {
                     <h2 className={"text-4xl font-bold "}>{product.title}</h2>
                     <h3 className={"border-2 border-violet-600 w-fit p-2 rounded-xl text-shadow-xl shadow-violet-600 my-5"}>{product.tags}</h3>
 
-                    <div className={"text-xl font-light"}  dangerouslySetInnerHTML={{__html: product.body_html}}
-                    />
+                    <div className={"text-xl font-light"}>
+                        <SanitizeHTML tag={"p"}>
+                            {product.body_html}
+                        </SanitizeHTML>
+                    </div>
+
                     <div className={"py-5 text-3xl font-semibold"}>
                         $ {getProductPrice()}
                     </div>
