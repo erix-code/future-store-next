@@ -1,8 +1,12 @@
+"use client"
 import Image from "next/image";
-import {useState} from "react";
-
+import {useRouter} from "next/navigation";
 export default function ProductView({product}) {
     let counter = 0;
+    const router = useRouter();
+    if (!product) {
+        router.push("/");
+    }
     const getProductPrice = () => {
         if (product.variants) {
             return product.variants[0].price;
