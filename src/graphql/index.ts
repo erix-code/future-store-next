@@ -1,22 +1,23 @@
-import { GraphQLClient } from "graphql-request/src/legacy/classes/GraphQLClient";
-import { env } from "@/app/config/env";
+import { GraphQLClient } from 'graphql-request';
+import { env } from '@/app/config/env';
 
-export class GraphqlClientSingleton {
+export class GraphQLClientSingleton {
     private readonly endpoint: string = env.SHOPIFY_GRAPHQL_ENDPOINT;
-    private static instance: GraphqlClientSingleton;
 
-    static getInstance(): GraphqlClientSingleton{
-        if(!this.instance) {
-            this.instance =  new GraphqlClientSingleton();
+    private static instance: GraphQLClientSingleton;
+
+    static getInstance(): GraphQLClientSingleton {
+        if (!this.instance) {
+            this.instance = new GraphQLClientSingleton();
         }
         return this.instance;
     }
-    getClient(): GraphQLClient{
+
+    getClient(): GraphQLClient {
         return new GraphQLClient(this.endpoint, {
             headers: {
-                "Shopify-Storefront-Private-Token": env.HEADLESS_PRIVATE_ACCESS_TOKEN
-            }
+                'Shopify-Storefront-Private-Token': env.HEADLESS_PRIVATE_ACCESS_TOKEN,
+            },
         });
     }
-
 }
