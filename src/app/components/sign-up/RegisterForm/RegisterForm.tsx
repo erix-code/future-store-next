@@ -8,7 +8,8 @@ export const RegisterForm = () => {
     const  handleSubmit = async (event) => {
         event.preventDefault();
         const formData= new FormData(event.target);
-        await handleRegister(formData);
+        const response = await handleRegister(formData);
+        console.log(response);
     }
     return (
         <form className={"flex w-full justify-center pt-32"} onSubmit={handleSubmit}>

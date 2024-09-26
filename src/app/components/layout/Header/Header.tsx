@@ -15,7 +15,7 @@ export default function Header () {
                 </ul>
                 <ul className={"flex flex-row justify-center space-x-10 md:w-1/3 w-1/2"}>
                     <li>
-                        <Link href="/" className={"hover:text-pink-500"}>Login</Link>
+                        <Link href="/sign-up" className={"hover:text-pink-500"}>Login</Link>
                     </li>
                     <li>
                         <Link href="/store" className={"hover:text-pink-500"}>Tienda</Link>

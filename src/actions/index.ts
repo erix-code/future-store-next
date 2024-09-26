@@ -11,7 +11,8 @@ export const handleRegister = async (formData) => {
     delete formDataObject["repeatPassword"];
     const variables = {
         input: {
-            ...formDataObject
+            ...formDataObject,
+            phone: '+591' + formDataObject.phone
         }
     }
     const data = await graphClient.request(createUserMutation, variables);
