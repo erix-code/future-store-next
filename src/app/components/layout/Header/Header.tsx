@@ -1,6 +1,10 @@
-"use client"
 import Link from "next/link";
-export default function Header () {
+import {cookies} from "next/headers";
+import {validateAccessToken} from "@/utils/auth/validateAccessToken";
+
+export default async function Header () {
+    const customer = await validateAccessToken();
+
     console.log("Header");
     return (
         <header className={"my-20"}>
@@ -15,11 +19,12 @@ export default function Header () {
                 </ul>
                 <ul className={"flex flex-row justify-center space-x-10 md:w-1/3 w-1/2"}>
                     <li>
-                        <Link href="/sign-up" className={"hover:text-pink-500"}>Login</Link>
+                        <Link href="/login" className={"hover:text-pink-500"}>Login</Link>
                     </li>
                     <li>
                         <Link href="/store" className={"hover:text-pink-500"}>Tienda</Link>
                     </li>
+                    {customer ? <h3 className={"text-lg"}>{customer.email}</h3> : ""}
                 </ul>
             </nav>
         </header>

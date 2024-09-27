@@ -25,3 +25,13 @@ export const handleRegister = async (formData) => {
         redirect('/store')
     }
 }
+
+export const handleLogin = async (formData)=> {
+    const formDataObject = Object.fromEntries(formData);
+    console.log(formDataObject);
+   const accessToken = await createAccessToken(formDataObject.email as string, formDataObject.password as string);
+    console.log(accessToken);
+    if (accessToken) {
+        redirect("/store")
+    }
+}
