@@ -3,9 +3,11 @@ import Image from "next/image";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 import {SanitizeHTML} from "@/app/components/SanitizeHTML/SanitizeHTML";
+import {useShoppingCart} from "@/hooks/useShoppingCart";
 
 export default function ProductView({product}) {
     const [counter, setCounter] = useState(0);
+    const { addToCart } = useShoppingCart();
     const router = useRouter();
     if (!product) {
         router.push("/");
@@ -17,6 +19,16 @@ export default function ProductView({product}) {
             return product.price;
         }
     }
+
+    function updateCart() {
+        addToCart({
+            title: product.title,
+            price: product.price,
+            id: product.id,
+            quantity: counter,
+        });
+    }
+
     return (
         <div className={"flex w-full mt-40 px-5 md:px-28 mb-40"}>
             <div className={"grid grid-cols-1 md:grid-cols-2 w-full gap-x-10"}>
@@ -46,7 +58,7 @@ export default function ProductView({product}) {
                             <input type="number" className={"bg-gray-500 text-center"} value={counter} readOnly={true}/>
                             <button onClick={() => {setCounter(counter+1)}}>+</button>
                         </div>
-                        <button className={"w-2/3 bg-gradient-to-r from-indigo-700 to-indigo-900 p-3 rounded-xl text-xl font-bold"}>
+                        <button className={"w-2/3 bg-gradient-to-r from-indigo-700 to-indigo-900 p-3 rounded-xl text-xl font-bold"} onClick={updateCart}>
                             Add to Cart
                         </button>
                     </div>

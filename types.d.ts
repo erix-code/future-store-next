@@ -16,3 +16,9 @@ type ProductType = {
     };
     tags: string;
 };
+type CartItem = {
+    title: string,
+    price: number,
+    quantity: number,
+    id: string
+}
