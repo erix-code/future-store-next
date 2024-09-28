@@ -6,7 +6,7 @@ import {SanitizeHTML} from "@/app/components/SanitizeHTML/SanitizeHTML";
 import {useShoppingCart} from "@/hooks/useShoppingCart";
 
 export default function ProductView({product}) {
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(1);
     const { addToCart } = useShoppingCart();
     const router = useRouter();
     if (!product) {
@@ -23,9 +23,10 @@ export default function ProductView({product}) {
     function updateCart() {
         addToCart({
             title: product.title,
-            price: product.price,
+            price: getProductPrice(),
             id: product.id,
             quantity: counter,
+            image: product.image
         });
     }
 
@@ -54,8 +55,8 @@ export default function ProductView({product}) {
                     </div>
                     <div className={"flex py-5 w-full"}>
                         <div className={"grid grid-cols-3 w-1/3 bg-gray-500 rounded mr-5 text-indigo-900 text-4xl"}>
-                            <button onClick={() => {setCounter(counter-1)}}>-</button>
-                            <input type="number" className={"bg-gray-500 text-center"} value={counter} readOnly={true}/>
+                            <button onClick={() => { if (counter > 1) setCounter(counter-1)}}>-</button>
+                            <input  type="number" className={"bg-gray-500 text-center"} value={counter} min={1}  readOnly={true}/>
                             <button onClick={() => {setCounter(counter+1)}}>+</button>
                         </div>
                         <button className={"w-2/3 bg-gradient-to-r from-indigo-700 to-indigo-900 p-3 rounded-xl text-xl font-bold"} onClick={updateCart}>
