@@ -21,5 +21,6 @@ type CartItem = {
     price: number,
     quantity: number,
     id: string,
-    image: {}
+    image: {},
+    merchandiseId: string
 }

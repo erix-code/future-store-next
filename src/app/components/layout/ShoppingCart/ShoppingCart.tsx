@@ -1,22 +1,29 @@
 "use client"
-import Link from "next/link";
 import {FaShoppingCart} from "react-icons/fa";
 import {useState} from "react";
 import {useShoppingCart} from "@/hooks/useShoppingCart";
 import Image from "next/image";
-import {log} from "node:util";
-import {FcEmptyTrash} from "react-icons/fc";
 import {BsTrash} from "react-icons/bs";
+import {handleCreateCart} from "@/actions";
 
-export const ShoppingCart = () => {
-    const {cart} = useShoppingCart();
+export default function ShoppingCart() {
+    const {cart, removeCartItem} = useShoppingCart();
     const [isOpen, setIsOpen] = useState(false);
     const [counter, setCounter] = useState(0);
     const handleModal = () => {
         setIsOpen(!isOpen);
         setIsOpen(!isOpen);
     }
+    const removeItem = (product) => {
+        removeCartItem(product);
+    }
     console.log(cart);
+
+    async function handleSubmit() {
+        const url = await handleCreateCart(cart);
+        console.log(url);
+    }
+
     return (
         <div>
             <li onClick={handleModal}>
@@ -40,14 +47,14 @@ export const ShoppingCart = () => {
                             <div className={"col-span-1"}>
                                 {product.quantity}
                             </div>
-                            <div className={"col-span-1 text-red-500"}>
+                            <div className={"col-span-1 text-red-500"} onClick={(event) => removeItem(product)}>
                                 <BsTrash></BsTrash>
                             </div>
                         </div>
                     ))
                 }
-                <div className={"flex justify-center mt-5"}>
-                    <button className={"m-4 bg-pink-600 w-full h-10 rounded-lg shadow-xl"}>Checkout</button>
+                <div className={"flex justify-center mt-5"} >
+                    <button className={"m-4 bg-pink-600 w-full h-10 rounded-lg shadow-xl"} onClick={handleSubmit}>Checkout</button>
                 </div>
             </div>
         </div>

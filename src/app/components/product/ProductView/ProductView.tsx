@@ -19,14 +19,15 @@ export default function ProductView({product}) {
             return product.price;
         }
     }
-
     function updateCart() {
+        console.log(product);
         addToCart({
             title: product.title,
             price: getProductPrice(),
             id: product.id,
             quantity: counter,
-            image: product.image
+            image: product.image,
+            merchandiseId: product.admin_graphql_api_id
         });
     }
 
