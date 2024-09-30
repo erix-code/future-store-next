@@ -39,14 +39,23 @@ export const handleLogin = async (formData)=> {
     }
 }
 
+
 export const handleCreateCart = async (items: CartItem[]) => {
     const cookiesStore = cookies();
-    const accessToken = cookiesStore.get('accessToken')?.value as string;
+    const accessToken: string = cookiesStore.get('accessToken')?.value as string;
     if (!accessToken) redirect('/login');
-
 
     const graphClient: GraphQLClient = GraphQLClientSingleton.getInstance().getClient();
     const customer = await validateAccessToken();
+
+    // Validate and log items
+    items.forEach(item => {
+        console.log(item.merchandiseId);
+        if (!item.merchandiseId) {
+            throw new Error(`Invalid merchandiseId for item: ${JSON.stringify(item)}`);
+        }
+    });
+
     const variables = {
         input: {
             buyerIdentity: {
@@ -61,6 +70,10 @@ export const handleCreateCart = async (items: CartItem[]) => {
             })
         }
     }
+
+    console.log('GraphQL Variables:', variables);
+
     const { cartCreate } = await graphClient.request(createCartMutation, variables);
+    console.log(cartCreate);
     return cartCreate?.cart?.checkoutUrl;
 }

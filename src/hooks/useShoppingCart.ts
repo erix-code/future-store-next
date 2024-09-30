@@ -33,18 +33,18 @@ export const useShoppingCart = create((set) => ({
                 return item
             })
 
-            if(itemExists) {
+            if (itemExists) {
                 saveArrayToLocalStorage(replaceExistingItem)
-                return ({ cart: replaceExistingItem })
+                return ({cart: replaceExistingItem})
             }
 
             saveArrayToLocalStorage([...state.cart, cartItem])
-            return ({ cart: [...state.cart, cartItem] })
+            return ({cart: [...state.cart, cartItem]})
         }),
     removeCartItem: (cartItem: CartItem) => set((state) => {
         const currentCart = state.cart
         const newCart = currentCart.filter((item) => item.id !== cartItem.id)
         saveArrayToLocalStorage(newCart)
-        return ({ cart: newCart })
+        return ({cart: newCart})
     })
 }))

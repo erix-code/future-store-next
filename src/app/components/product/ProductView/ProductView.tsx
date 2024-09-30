@@ -19,15 +19,21 @@ export default function ProductView({product}) {
             return product.price;
         }
     }
+    const getMerchandiseId = () => {
+        if (product.variants){
+            console.log(product.variants[0].admin_graphql_api_id);
+            return product.variants[0].admin_graphql_api_id;
+        }
+    }
     function updateCart() {
         console.log(product);
         addToCart({
             title: product.title,
             price: getProductPrice(),
-            id: product.id,
             quantity: counter,
+            id: product.id,
             image: product.image,
-            merchandiseId: product.admin_graphql_api_id
+            merchandiseId: getMerchandiseId()
         });
     }
 

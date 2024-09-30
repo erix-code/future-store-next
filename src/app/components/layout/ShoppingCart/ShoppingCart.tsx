@@ -20,8 +20,16 @@ export default function ShoppingCart() {
     console.log(cart);
 
     async function handleSubmit() {
-        const url = await handleCreateCart(cart);
-        console.log(url);
+        try {
+            const url = await handleCreateCart(cart);
+            if (!url) throw new Error("Error creating cart");
+            window.localStorage.removeItem("cart");
+            window.location.href = url;
+
+        } catch (error) {
+            console.error(error)
+        }
+
     }
 
     return (
@@ -36,10 +44,10 @@ export default function ShoppingCart() {
             <div className={`w-full h-screen  md:w-80 md:h-auto  md:min-h-80 border-gray-600 border rounded-xl absolute left-0 md:left-auto top-14 md:right-1 z-40 bg-primary
                 ${isOpen ? "block" : "hidden"}`}>
                 {
-                    cart.map((product) => (
-                        <div className={"grid grid-cols-6 gap-x-1 h-20 p-2 place-items-center"}>
+                    cart.map((product, index) => (
+                        <div className={"grid grid-cols-6 gap-x-1 h-20 p-2 place-items-center"} key={index}>
                             <div className={"col-span-1"}>
-                                <Image src={product.image.src} alt={product.image.alt} width={500} height={500}></Image>
+                                <Image src={product.image.src} alt={product.title} width={500} height={500}></Image>
                             </div>
                             <div className={"col-span-3 text-sm font-semibold"}>
                                 {product.title}
