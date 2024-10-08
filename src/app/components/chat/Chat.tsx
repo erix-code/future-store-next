@@ -13,6 +13,7 @@ export const Chat = (props) => {
     });
 
     return (
+
         <div className="flex flex-col w-full max-w-md py-4 mx-auto stretch">
             {messages.map(m => (
                 <div key={m.id} className="whitespace-pre-wrap">
@@ -20,8 +21,8 @@ export const Chat = (props) => {
                     {m.content}
                 </div>
             ))}
-
-            <form onSubmit={handleSubmit} >
+            <h1>Hello</h1>
+            <form onSubmit={handleSubmit}>
                 <input
                     className=" text-black w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl "
                     value={input}
