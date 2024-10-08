@@ -22,7 +22,9 @@ export default async function Header () {
                     </li>
                 </ul>
                 <ul className={"flex flex-row justify-center space-x-10 md:w-1/3 w-1/2 items-center"}>
-                    {customer ? <li className={"text-sm hidden lg:block"}>{customer.email}</li> : ""}
+                    {customer ? <Link href={"/my-account"} className={"text-sm hidden lg:block"}>
+                        {customer.email}
+                    </Link> : ""}
                     <li>
                         <Link href="/login" className={"hover:text-pink-500"}>Login</Link>
                     </li>

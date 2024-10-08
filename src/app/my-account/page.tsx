@@ -7,19 +7,10 @@ export default async function MyAccountPage() {
     console.log(orders);
 
     return (
-        <div>
+        <div className={"w-full"}>
             {customer ? <h1>Welcome {customer.firstName} {customer.lastName}</h1> : <h1>Not logged in</h1>}
             <section>
-                <h2>Orders</h2>
-                {orders.orders.map((order: any) => {
-                    return (
-                        <div key={order.id}>
-                            <h3>Order {order.name}</h3>
-                            <h3>Order {order.orderNumber}</h3>
-                            <p>Total: {order.totalPrice}</p>
-                        </div>
-                    )
-                })}
+
             </section>
         </div>
     )

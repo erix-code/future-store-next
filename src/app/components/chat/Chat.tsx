@@ -5,7 +5,6 @@ import { useChat } from 'ai/react';
 export const Chat = (props) => {
 
     console.log(props.agent);
-    // noinspection TypeScriptValidateTypes
     const { messages, input, handleInputChange, handleSubmit } = useChat({
         initialMessages: [
             { id: 1, role: 'system', content: props.agent }
@@ -21,7 +20,6 @@ export const Chat = (props) => {
                     {m.content}
                 </div>
             ))}
-            <h1>Hello</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     className=" text-black w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl "

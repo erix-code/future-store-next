@@ -7,7 +7,7 @@ interface MyAccountLayoutProps {
 export default function MyAccountLayout(props: MyAccountLayoutProps) {
     console.log(props);
     return (
-        <div>
+        <div className={"flex flex-col items-center justify-center w-full"}>
             <h1>My Account</h1>
             <section>
                 <h2>User Info</h2>
