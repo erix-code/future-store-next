@@ -1,11 +1,12 @@
-import { getProducts } from "@/app/services/shopify";
-import { env } from "@/app/config/env";
-interface json {
-    products: []
-}
-export async function GET(): Promise<Response> {
+import {getProducts} from "@/app/services/shopify";
+import {env} from "@/app/config/env";
 
-    const response: Response = await fetch(`${env.NEXT_PUBLIC_BASE_PATH}/api`);
-    const { products }:json = await response.json();
-    return Response.json(products);
+export async function GET(): Promise<Response> {
+    try {
+        const data = await getProducts();
+        const products = await data;
+        return Response.json(products);
+    } catch (error) {
+        console.log(error);
+    }
 }
