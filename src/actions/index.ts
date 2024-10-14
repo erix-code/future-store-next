@@ -8,7 +8,7 @@ import {cookies} from "next/headers";
 import {validateAccessToken} from "@/utils/auth/validateAccessToken";
 import {createCartMutation} from "@/graphql/mutations/createCartMutation";
 
-export const handleRegister = async (formData) => {
+export const handleRegister = async (formData: FormData) => {
     const formDataObject = Object.fromEntries(formData);
     /** @var const graphClient: GraphQLClient **/
     const graphClient: GraphQLClient = GraphQLClientSingleton.getInstance().getClient();
@@ -20,6 +20,7 @@ export const handleRegister = async (formData) => {
             phone: '+591' + formDataObject.phone
         }
     }
+    // @ts-expect-error has not
     const { customerCreate } = await graphClient.request(createUserMutation, variables)
     const { customerUserErrors, customer } = customerCreate
 
@@ -29,7 +30,7 @@ export const handleRegister = async (formData) => {
     }
 }
 
-export const handleLogin = async (formData)=> {
+export const handleLogin = async (formData: FormData)=> {
     const formDataObject = Object.fromEntries(formData);
     console.log(formDataObject);
    const accessToken = await createAccessToken(formDataObject.email as string, formDataObject.password as string);
@@ -72,7 +73,7 @@ export const handleCreateCart = async (items: CartItem[]) => {
     }
 
     console.log('GraphQL Variables:', variables);
-
+    // @ts-expect-error has not defined
     const { cartCreate } = await graphClient.request(createCartMutation, variables);
     console.log(cartCreate);
     return cartCreate?.cart?.checkoutUrl;

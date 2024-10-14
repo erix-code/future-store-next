@@ -7,6 +7,7 @@ import {useShoppingCart} from "@/hooks/useShoppingCart";
 
 export default function ProductView({product}) {
     const [counter, setCounter] = useState(1);
+    // @ts-ignore
     const { addToCart } = useShoppingCart();
     const router = useRouter();
     if (!product) {

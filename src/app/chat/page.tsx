@@ -1,4 +1,4 @@
-import { Chat } from '../components/chat/chat';
+import { Chat } from "@/app/components/chat/Chat";
 import {getProducts} from "@/app/services/shopify";
 import { createAgent } from "@/utils/openai/createAgent";
 export default async function ChatPage() {

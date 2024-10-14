@@ -7,7 +7,7 @@ export const Chat = (props) => {
     console.log(props.agent);
     const { messages, input, handleInputChange, handleSubmit } = useChat({
         initialMessages: [
-            { id: 1, role: 'system', content: props.agent }
+            { id: "1", role: 'system', content: props.agent }
         ]
     });
 

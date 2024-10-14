@@ -7,7 +7,8 @@ import {BsTrash} from "react-icons/bs";
 import {handleCreateCart} from "@/actions";
 
 export default function ShoppingCart() {
-    const {cart, removeCartItem} = useShoppingCart();
+    // @ts-ignore
+    const {cart, removeCartItem}= useShoppingCart();
     const [isOpen, setIsOpen] = useState(false);
     const [counter, setCounter] = useState(0);
     const handleModal = () => {
